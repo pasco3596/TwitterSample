@@ -48,7 +48,17 @@ public class TwitterManager : MonoBehaviour {
         try {
             ScreenCapture.CaptureScreenshot("Screenshot.png");
             var uri = "file:///" + Application.persistentDataPath + "/Screenshot.png";
-            Twitter.Compose(session, uri, "test by", new[] {"#ChinNeko"});
+            Twitter.Compose(session, uri, "test by", new[] {"#ChinNeko"},
+                success => {
+                    //tweetIdらしい
+                    Debug.Log(success);
+                },
+                apiError => {
+                    Debug.Log(apiError.message);
+                },
+                _ => {
+                    Debug.Log("cancel");
+                });
         } catch (Exception e) {
             Debug.Log("error::" + e.Message);
         }
