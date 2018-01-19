@@ -56,7 +56,7 @@ public class TwitterManager : MonoBehaviour {
                 apiError => {
                     Debug.Log(apiError.message);
                 },
-                _ => {
+                () => {
                     Debug.Log("cancel");
                 });
         } catch (Exception e) {
